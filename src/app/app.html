@@ -1,26 +1,50 @@
+<body>
 <!-- Se la partita è in corso deve essere disabilitato
     CERCATE su google "disable button angular"
  -->
-<button (click)="avvia()" class="btn btn primary">AVVIA</button>
+<button [disabled]="partitaInCorso" (click)="avvia()" class="btn btn primary">AVVIA</button>
 
 <!-- TABELLA DI GIOCO -->
 <div class="container">
   <div class="row">
-    <button (click)="inserisciValore(0,0)"  class="btn col-4 border">{{valori[0][0] ? valori[0][0] : '&nbsp;'}}</button>
-    <button class="btn col-4 border "></button>
-    <button class="btn col-4 border"></button>
+    <button (click)="inserisciValore(0,0)" class="btn col-4 border">{{ valori[0][0] ? valori[0][0] : '&nbsp;' }}
+    </button>
+    <button (click)="inserisciValore(0,1)" class="btn col-4 border">{{ valori[0][1] ? valori[0][1] : '&nbsp;' }}
+    </button>
+    <button (click)="inserisciValore(0,2)" class="btn col-4 border">{{ valori[0][2] ? valori[0][2] : '&nbsp;' }}
+    </button>
   </div>
   <div class="row">
-    <button class="btn col-4 border"></button>
-    <button class="btn col-4 border"></button>
-    <button class="btn col-4 border"></button>
+    <button (click)="inserisciValore(1,0)" class="btn col-4 border">{{ valori[1][0] ? valori[1][0] : '&nbsp;' }}
+    </button>
+    <button (click)="inserisciValore(1,1)" class="btn col-4 border">{{ valori[1][1] ? valori[1][1] : '&nbsp;' }}
+    </button>
+    <button (click)="inserisciValore(1,2)" class="btn col-4 border">{{ valori[1][2] ? valori[1][2] : '&nbsp;' }}
+    </button>
   </div>
   <div class="row">
-    <button class="btn col-4 border"></button>
-    <button (click)="inserisciValore(2,1)"  class="btn col-4 border">{{valori[2][1] ? valori[2][1] : '&nbsp;'}}</button>
-    <button class="btn col-4 border"></button>
+    <button (click)="inserisciValore(2,0)" class="btn col-4 border">{{ valori[2][0] ? valori[2][0] : '&nbsp;' }}
+    </button>
+    <button (click)="inserisciValore(2,1)" class="btn col-4 border">{{ valori[2][1] ? valori[2][1] : '&nbsp;' }}
+    </button>
+    <button (click)="inserisciValore(2,2)" class="btn col-4 border">{{ valori[2][2] ? valori[2][2] : '&nbsp;' }}
+    </button>
   </div>
-
-
-
 </div>
+  @if (partitaInCorso) {
+
+    <h1>è il turno di: </h1>
+    @if (turnoGiocatore) {
+      <h1 style="color: green">{{ giocatore }}</h1>
+    } @else {
+      @if (pausaPensiero) {
+        <div class="spinner-border text-primary" role="status">
+          <span class="sr-only"></span>
+        </div>
+      }
+      <h1 style="color: red">{{ avversario }}</h1>
+    }
+  }
+<h1>{{ messaggioFinale }}</h1>
+
+</body>
